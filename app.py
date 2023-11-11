@@ -27,7 +27,9 @@ def load_data(file, sheet_names=None):
         
 
        data_dict = pd.read_excel(file, sheet_name=[sheet_name1, sheet_name2, sheet_name3, sheet_name4, sheet_name5, sheet_name6, sheet_name7,sheet_name8,sheet_name9,sheet_name10,sheet_name11,sheet_name12,])
-       data_combine = pd.concat(data_dict.values(), ignore_index=True)
+    for sheet_name, data in data_dict.items():
+      data_dict["sex"] = data.groupby(data.columns, axis=1).agg(' '.join)
+    data_combine = pd.concat(data_dict.values(), ignore_index=True)
     return data_combine
 
 
