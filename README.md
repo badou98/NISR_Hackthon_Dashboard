@@ -1,71 +1,12 @@
-### Navigating the Dynamics of Rwanda's Labour Force
+# NISR_Hackton_Dashboard
 
-# Rwanda Labour Force Survey Dashboard 2023:Q3
+RWANDA Labour Force 2023;Q3
 
-## Overview
+Lobour statistics play an essential role in the effort of the country to achive decent work for all. These statishics are needed for the development of policies towards this goal and essessing progress towords decent work.
 
-This Streamlit application provides an interactive dashboard to explore the dynamics of Rwanda's labor force. It features insights into the relationship between educational attainment, gender, and age groups within employment statistics.
+The Labour Force Survey (LFS) programme collect data on employment and labour underutilization characteristics of the population on a continuous basis, providing quarterly estimates of the main labour force aggregates with sufficient precision at the National level since 2016.
+The Rwanda Quarterly Labour Force Survey programme is in line with the international standards on the topic and the specific data requirements of the main stakeholders namely Ministry of Public Service and Labour (MIFOTRA), Ministry of Finance and Economic Planning (MINECOFIN), International Labour Organization (ILO), World Bank, and other statistical users.
 
-## Features
 
-- Interactive bar charts showcasing labor force statistics by sex, age group, and education level.
-- Ability to filter visualizations based on different demographic parameters.
-- Summary insights derived from the visualized data.
 
-## Installation
-
-### Prerequisites
-
-Before running the application, ensure you have Python installed on your system. This application was built using Python 3.8. It may work with other versions, but compatibility is not guaranteed.
-
-### Clone the Repository
-
-To get started, clone this repository to your local machine using the following command:
-
-```bash
-git clone https://github.com/karanidenis/NISR-hackathon.git
-```
-
-```bash
-cd NISR-hackathon
-```
-
-### Install Dependencies
-
-To install the dependencies, run the following command:
-
-```bash
-
-pip install -r requirements.txt
-```
-
-### Run the Application
-
-To run the application, navigate to the directory containing `streamlit_app.py` and execute:
-
-```bash
-cd src
-```
-
-```bash
-
-streamlit run streamlit_app.py
-```
-
-The application should now be running on `http://localhost:8501`.
-
-## Demo
-
-Watch a live demo of the dashboard [here](https://watch.screencastify.com/v/EB2aTU4VdIGGBAO2C9AJ).
-
-## Usage
-
-After launching the application, use the sidebar widgets to filter the data based on sex, age group, or area of residence. The charts will update interactively based on your selections.
-
-## Support
-
-For support, please open an issue in the GitHub repository or contact the authors at [Denis Waweru](mailto:d.waweru@alustudent.com) and [Wubeshet Yimam](mailto:w.yimam@alustudent.com)
-
-## Contributing
-
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+scatter chart it's graph we have used
