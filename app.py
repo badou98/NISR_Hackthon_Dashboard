@@ -1,46 +1,33 @@
-import streamlit as st
 import pandas as pd
 import plotly as pt
+import streamlit as st
 
-st.set_page_config(page_title="NISR Dashboard",layout="wide")
-st.title("NISR Hackton Dashboard")
+st.set_page_config(page_title="NISR Dashboard", layout="wide")
+st.title(" :bar_chart: NISR Hackton Dashboard")
 uploaded_file = st.sidebar.file_uploader("Upload a file")
-@st.cache_data
-def load_data(file, sheet_names=None):
+
+def load_data(file, sheet_names):
+    data_dict = pd.read_excel(file, sheet_name=sheet_names)
+    data_combined = pd.concat(data_dict.values(), ignore_index=True)
+
+  
+    data_combined = pd.DataFrame(data_combined)
+
     
-    sheet_name1 = "Table B.1"
-    sheet_name2 = "Table B.2"
-    sheet_name3 = "Table B.3"
-    sheet_name4 = "Table B.4"
-    sheet_name5 = "Table B.5"
-    sheet_name6 = "Table B.6"
-    sheet_name7 = "Table B.7"
-    sheet_name8 = "Table B.8"
-    sheet_name9 = "Table B.9"
-    sheet_name10 = "Table B.10"
-    sheet_name11 = "Table B.11"
-    sheet_name12 = "Table B.12"
-    if sheet_names is None:
-      data_dict = pd.read_excel(file, sheet_names=None)
-      
-    else:
-        
+    data_combined.fillna('', inplace=True)
 
-       data_dict = pd.read_excel(file, sheet_name=[sheet_name1, sheet_name2, sheet_name3, sheet_name4, sheet_name5, sheet_name6, sheet_name7,sheet_name8,sheet_name9,sheet_name10,sheet_name11,sheet_name12,])
-    for sheet_name, data in data_dict.items():
-      data_dict["sex"] = data.groupby(data.columns, axis=1).agg(' '.join)
-    data_combine = pd.concat(data_dict.values(), ignore_index=True)
-    return data_combine
+    
+    data_combined = data_combined.applymap(lambda x: '{:,.0f}'.format(x) if pd.notna(x) and pd.api.types.is_numeric_dtype(x) else x)
 
+    return data_combined
 
+if uploaded_file is not None:
+    all_sheet_names = pd.read_excel(uploaded_file, sheet_name=None).keys()
+    selected_sheets = st.sidebar.multiselect("select sheets", all_sheet_names)
 
-if uploaded_file is None:   
+    df_combined = load_data(file=uploaded_file, sheet_names=selected_sheets)
+    with st.expander("Data Analysis"):
+        st.dataframe(df_combined)
+else:
     st.info("Upload a file through config")
     st.stop()
-    
-all_sheet_names = pd.read_excel(uploaded_file, sheet_name=None).keys()
-selected_sheets = st.sidebar.multiselect("select sheets", all_sheet_names)
-    
-df_combined = load_data(file=uploaded_file, sheet_names=selected_sheets)
-
-st.dataframe(df_combined)
